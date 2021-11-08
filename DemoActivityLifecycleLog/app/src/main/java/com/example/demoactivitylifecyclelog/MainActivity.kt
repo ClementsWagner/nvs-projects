@@ -1,5 +1,6 @@
 package com.example.demoactivitylifecyclelog
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -9,6 +10,12 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "MainActivity"
+    }
+
+    fun switchActivity(){
+       /* val intent = Intent(this, SecondActivity).apply {
+
+        }*/
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
