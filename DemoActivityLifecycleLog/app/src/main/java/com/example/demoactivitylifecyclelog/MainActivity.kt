@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,16 +16,22 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
-    fun switchActivity(){
-       /* val intent = Intent(this, SecondActivity).apply {
-
-        }*/
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "onCreate")
+
+        val text = intent.getStringExtra("text")
+        findViewById<TextView>(R.id.editText).text = text
+    }
+
+    fun switchActivity(view: View){
+        val editText = findViewById<EditText>(R.id.editText)
+        val text = editText.text.toString()
+        val intent = Intent(this, SecondActivity::class.java).apply {
+            putExtra("text", text)
+        }
+        view.context.startActivity(intent)
     }
 
     override fun onResume() {
