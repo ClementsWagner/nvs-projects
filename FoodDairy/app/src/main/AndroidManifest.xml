@@ -10,7 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDairy">
         <activity
-            android:name=".EditIngredient"
+            android:name=".IngredientDetail"
+            android:exported="false" />
+        <activity
+            android:name=".view.IngredientDetail"
+            android:exported="false"
+            android:label="@string/title_activity_ingredient_detail"
+            android:theme="@style/Theme.FoodDairy.NoActionBar" />
+        <activity
+            android:name=".view.EditIngredient"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -13,14 +13,19 @@ import com.example.fooddairycompose.R
 import com.example.fooddairycompose.model.Ingredient
 import com.example.fooddairycompose.model.Recipe
 import androidx.compose.material.MaterialTheme
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.fooddairycompose.repositories.IngredientRepository
 import com.example.fooddairycompose.repositories.RecipeRepository
 import com.example.fooddairycompose.ui.components.*
+import kotlin.math.exp
 
 private val recipeRepository: RecipeRepository = RecipeRepository()
 
@@ -100,9 +105,40 @@ fun EditRecipe(navController: NavController, recipeId: Int, new: Boolean){
                 }
             },
             floatingActionButtonPosition = FabPosition.End,
-            floatingActionButton = { FloatingActionButton(onClick = {}) {
+            floatingActionButton = { FloatingActionButton(onClick = {navController.navigate("add_ingredient_recipe")}) {
                 Icon(painter = painterResource(id = R.drawable.ic_baseline_add_24), contentDescription = "add") }
             }
         )
     }
 }
+
+@Composable
+fun AddIngredientToRecipe(navController: NavController) {
+
+    val ingredients = IngredientRepository().getAllIngredients()
+    val text = remember { mutableStateOf("") } // initial value
+    val isOpen = remember { mutableStateOf(false) } // initial value
+    val openCloseOfDropDownList: (Boolean) -> Unit = {
+        isOpen.value = it
+    }
+    Column(modifier = Modifier.padding(bottom = 30.dp, top = 30.dp)) {
+        Box(modifier = Modifier.padding(20.dp)) {
+            Column {
+
+
+            }
+            Box(modifier = Modifier.padding(20.dp)) {
+                TextField(label = { Text("Amount") }, value = "", onValueChange = {})
+            }
+            Box(modifier = Modifier.padding(20.dp)) {
+                TextField(label = { Text("Unit") }, value = "", onValueChange = {})
+            }
+            SaveOrCancel(
+                onSave = {
+
+                },
+                onCancel = { navController.popBackStack() })
+        }
+    }
+}
+

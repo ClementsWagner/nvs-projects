@@ -71,6 +71,9 @@ fun NavigationGraph(navController: NavHostController) {
         composable("new_recipe"){
             EditRecipe(navController = navController, 0, true)
         }
+        composable("add_ingredient_recipe"){
+            AddIngredientToRecipe(navController = navController)
+        }
 
     }
 }

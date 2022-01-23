@@ -3,8 +3,8 @@ package com.example.fooddairy
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
+import com.example.fooddairy.view.IngredientsFragment
+import com.example.fooddairy.view.RecipeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.nav_ingredients->setCurrentFragment(ingredientsFragment)
-                R.id.nav_recipes->setCurrentFragment(recipeFragment)
+                R.id.nav_ingredients ->setCurrentFragment(ingredientsFragment)
+                R.id.nav_recipes ->setCurrentFragment(recipeFragment)
             }
             true
         }
