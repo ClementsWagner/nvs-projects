@@ -10,12 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddairy.IngredientDetail
 import com.example.fooddairy.IngredientsAdapter
+import com.example.fooddairy.R
 import com.example.fooddairy.viewModels.ViewModelFactory
 import com.example.fooddairy.databinding.FragmentIngredientsBinding
 import com.example.fooddairy.db.FoodDairyDatabase
 import com.example.fooddairy.db.Ingredient
 import com.example.fooddairy.db.IngredientRepository
 import com.example.fooddairy.viewModels.IngredientViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,6 +46,11 @@ class IngredientsFragment : Fragment() {
         ingredientViewModel = ViewModelProvider(this, factory).get(IngredientViewModel::class.java)
         binding.myViewModel = ingredientViewModel
         binding.lifecycleOwner = this
+
+        binding.ingredientFAB.setOnClickListener {
+            val intent = Intent(this.requireContext(), EditIngredient::class.java)
+            startActivity(intent)
+        }
 
         initRecycler()
         // Inflate the layout for this fragment

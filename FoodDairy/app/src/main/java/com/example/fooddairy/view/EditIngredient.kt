@@ -28,9 +28,27 @@ class EditIngredient : AppCompatActivity() {
         val factory = ViewModelFactory(repository)
         ingredientViewModel = ViewModelProvider(this, factory).get(IngredientViewModel::class.java)
         binding.myViewModel = ingredientViewModel
+        binding.lifecycleOwner = this
 
         if(ingredientId!=0){
             ingredientViewModel.initUpdate(ingredientId)
+            binding.SaveOrAddIngredientButton.setOnClickListener{
+                ingredientViewModel.updateIngredient()
+                finish()
+            }
         }
+        else{
+            ingredientViewModel.initAdd()
+            binding.SaveOrAddIngredientButton.setOnClickListener{
+                ingredientViewModel.insertIngredient()
+                finish()
+            }
+        }
+
+        binding.CancelIngrdientButton.setOnClickListener{finish()}
+
     }
+
+
+
 }

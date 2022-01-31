@@ -21,8 +21,19 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
 
     init {
         saveOrAddButtonText.value = "Add"
+        //inputName.value = ""
+        //inputCalories.value = ""
+    }
+
+    fun initAdd(){
+        saveOrAddButtonText.value = "Add"
         inputName.value = ""
         inputCalories.value = ""
+    }
+
+    fun insertIngredient() = viewModelScope.launch {
+        val newIngredient: Ingredient = Ingredient(0,inputName.value!!, inputCalories.value!!.toInt())
+        ingredientRepository.insertIngredient(newIngredient)
     }
 
     fun initUpdate(ingredientId: Int) = viewModelScope.launch {
@@ -33,10 +44,16 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
         inputCalories.value = ingredientToSaveOrAdd.calories.toString()
     }
 
+    fun updateIngredient() = viewModelScope.launch {
+        ingredientToSaveOrAdd.name = inputName.value!!
+        ingredientToSaveOrAdd.calories = inputCalories.value!!.toInt()
+        ingredientRepository.updateIngredient(ingredientToSaveOrAdd)
+    }
+
     fun initDetails(ingredientId: Int) = viewModelScope.launch {
-        val ingredient = ingredientRepository.getIngredientById(ingredientId)
-        inputName.value = ingredient.name
-        inputCalories.value = ingredient.calories.toString()
+        ingredientToSaveOrAdd = ingredientRepository.getIngredientById(ingredientId)
+        inputName.value = ingredientToSaveOrAdd.name
+        inputCalories.value = ingredientToSaveOrAdd.calories.toString()
     }
 
 
