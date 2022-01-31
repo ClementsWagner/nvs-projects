@@ -1,11 +1,57 @@
 package com.example.fooddairy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import com.example.fooddairy.databinding.ActivityIngredientDetailBinding
+import com.example.fooddairy.db.FoodDairyDatabase
+import com.example.fooddairy.db.IngredientRepository
+import com.example.fooddairy.view.EditIngredient
+import com.example.fooddairy.viewModels.IngredientViewModel
+import com.example.fooddairy.viewModels.ViewModelFactory
 
 class IngredientDetail : AppCompatActivity() {
+    private lateinit var binding: ActivityIngredientDetailBinding
+    private lateinit var ingredientViewModel: IngredientViewModel
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ingredient_detail)
+        // showing the back button in action bar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_ingredient_detail)
+        val dao = FoodDairyDatabase.getInstance(this).ingredientDao()
+        val repository = IngredientRepository(dao)
+        val factory = ViewModelFactory(repository)
+        ingredientViewModel = ViewModelProvider(this, factory).get(IngredientViewModel::class.java)
+        binding.myViewModel = ingredientViewModel
+        binding.lifecycleOwner = this
+
+        val ingredientId: Int = intent.getIntExtra("ingredient_id",0)
+
+        binding.EditIngredientButton.setOnClickListener { onEditClick(ingredientId) }
+        ingredientViewModel.initDetails(ingredientId)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun onEditClick(ingredientId: Int){
+        val intent = Intent(this, EditIngredient::class.java).apply {
+            putExtra("ingredient_id", ingredientId)
+        }
+        startActivity(intent)
     }
 }

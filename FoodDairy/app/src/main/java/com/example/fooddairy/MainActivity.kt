@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         val ingredientsFragment = IngredientsFragment()
         val recipeFragment = RecipeFragment()
 
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){

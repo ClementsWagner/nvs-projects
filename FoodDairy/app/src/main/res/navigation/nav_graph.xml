@@ -15,4 +15,10 @@
         android:name="com.example.fooddairy.view.RecipeFragment"
         android:label="fragment_recipe"
         tools:layout="@layout/fragment_recipe" />
+    <activity
+        android:id="@+id/editIngredient"
+        android:name="com.example.fooddairy.view.EditIngredient"
+        android:label="EditIngredient" />
+
+
 </navigation>

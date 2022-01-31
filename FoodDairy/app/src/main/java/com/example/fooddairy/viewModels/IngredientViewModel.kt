@@ -13,6 +13,33 @@ import kotlinx.coroutines.launch
 
 class IngredientViewModel(private val ingredientRepository: IngredientRepository) : ViewModel() {
 
+    private var add: Boolean = true
+    private lateinit var ingredientToSaveOrAdd: Ingredient
+    val saveOrAddButtonText = MutableLiveData<String>()
+    val inputName = MutableLiveData<String>()
+    val inputCalories = MutableLiveData<String>()
+
+    init {
+        saveOrAddButtonText.value = "Add"
+        inputName.value = ""
+        inputCalories.value = ""
+    }
+
+    fun initUpdate(ingredientId: Int) = viewModelScope.launch {
+        saveOrAddButtonText.value = "Save"
+        add = false
+        ingredientToSaveOrAdd = ingredientRepository.getIngredientById(ingredientId)
+        inputName.value = ingredientToSaveOrAdd.name
+        inputCalories.value = ingredientToSaveOrAdd.calories.toString()
+    }
+
+    fun initDetails(ingredientId: Int) = viewModelScope.launch {
+        val ingredient = ingredientRepository.getIngredientById(ingredientId)
+        inputName.value = ingredient.name
+        inputCalories.value = ingredient.calories.toString()
+    }
+
+
     fun getAllIngredients() = liveData {
         ingredientRepository.ingredients.collect {
             emit(it)
@@ -22,5 +49,4 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
     fun deleteIngredients(ingredient: Ingredient) = viewModelScope.launch {
         ingredientRepository.deleteIngredient(ingredient);
     }
-
 }

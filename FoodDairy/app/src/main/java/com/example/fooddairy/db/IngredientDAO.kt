@@ -19,4 +19,7 @@ interface IngredientDAO {
     @Query("SELECT * FROM Ingredient")
     fun getAllIngredients(): Flow<List<Ingredient>>
 
+    @Query("SELECT * FROM Ingredient where ingredient_id=:ingredientId")
+    suspend fun getIngredientById(ingredientId: Int): Ingredient
+
 }

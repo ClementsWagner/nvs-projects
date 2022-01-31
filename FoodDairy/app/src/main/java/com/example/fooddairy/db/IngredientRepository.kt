@@ -16,4 +16,8 @@ class IngredientRepository(private val dao: IngredientDAO) {
         return dao.deleteIngredient(ingredient);
     }
 
+    suspend fun getIngredientById(ingredientId: Int): Ingredient{
+        return dao.getIngredientById(ingredientId)
+    }
+
 }
