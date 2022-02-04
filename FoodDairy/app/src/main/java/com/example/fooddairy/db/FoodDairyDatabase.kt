@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Ingredient::class], version = 1)
+@Database(entities = [Ingredient::class, Recipe::class, RecipeIngredient::class], version = 3)
 abstract class FoodDairyDatabase : RoomDatabase() {
     abstract fun ingredientDao(): IngredientDAO
+    abstract fun recipeDao(): RecipeDAO
 
     companion object {
         @Volatile
@@ -20,7 +21,7 @@ abstract class FoodDairyDatabase : RoomDatabase() {
                         context.applicationContext,
                         FoodDairyDatabase::class.java,
                         "fooddairy_database"
-                    ).build()
+                    ).fallbackToDestructiveMigration().build()
                 }
                 return instance
             }

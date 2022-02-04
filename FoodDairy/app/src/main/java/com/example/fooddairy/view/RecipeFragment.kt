@@ -5,7 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fooddairy.IngredientsAdapter
 import com.example.fooddairy.R
+import com.example.fooddairy.RecipeAdapter
+import com.example.fooddairy.databinding.FragmentIngredientsBinding
+import com.example.fooddairy.databinding.FragmentRecipeBinding
+import com.example.fooddairy.db.FoodDairyDatabase
+import com.example.fooddairy.db.Ingredient
+import com.example.fooddairy.db.Recipe
+import com.example.fooddairy.db.RecipeRepository
+import com.example.fooddairy.viewModels.IngredientViewModel
+import com.example.fooddairy.viewModels.RecipeViewModel
+import com.example.fooddairy.viewModels.ViewModelFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,15 +31,14 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class RecipeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var recipeViewModel: RecipeViewModel
+    private lateinit var binding: FragmentRecipeBinding
+    private lateinit var adapter: RecipeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -34,8 +46,36 @@ class RecipeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentRecipeBinding.inflate(inflater, container, false)
+        val dao = FoodDairyDatabase.getInstance(this.requireContext()).recipeDao()
+        val repository = RecipeRepository(dao)
+        val factory = ViewModelFactory(repository)
+        recipeViewModel = ViewModelProvider(this, factory).get(RecipeViewModel::class.java)
+        binding.myViewModel = recipeViewModel
+        binding.lifecycleOwner = this
+
+        initRecycler()
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recipe, container, false)
+        return binding.root
+    }
+
+    private fun initRecycler(){
+        binding.recipeRecyclerView.layoutManager = LinearLayoutManager(this.requireContext())
+        adapter = RecipeAdapter({selectedItem: Recipe -> listItemClicked(selectedItem)})
+        binding.recipeRecyclerView.adapter = adapter
+
+        displayRecipes()
+    }
+
+    private fun displayRecipes(){
+        recipeViewModel.getAllRecipes().observe(viewLifecycleOwner,{
+            adapter.setList(it)
+            adapter.notifyDataSetChanged()
+        })
+    }
+
+    private fun listItemClicked(recipe: Recipe){
+
     }
 
     companion object {

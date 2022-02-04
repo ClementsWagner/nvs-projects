@@ -1,8 +1,10 @@
 package com.example.fooddairy.db
 
+import kotlinx.coroutines.flow.Flow
+
 class IngredientRepository(private val dao: IngredientDAO) {
 
-    val ingredients = dao.getAllIngredients();
+    val ingredients : Flow<List<Ingredient>> = dao.getAllIngredients()
 
     suspend fun insertIngredient(ingredient: Ingredient): Long{
         return dao.insertIngredient(ingredient);

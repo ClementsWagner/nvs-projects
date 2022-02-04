@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface IngredientDAO {
 
     @Insert
-    suspend fun insertIngredient(ingredient: Ingredient) : Long
+    suspend fun insertIngredient(ingredient: Ingredient): Long
 
     @Update
     suspend fun updateIngredient(ingredient: Ingredient): Int
@@ -19,7 +19,7 @@ interface IngredientDAO {
     @Query("SELECT * FROM Ingredient")
     fun getAllIngredients(): Flow<List<Ingredient>>
 
-    @Query("SELECT * FROM Ingredient where ingredient_id=:ingredientId")
+    @Query("SELECT * FROM Ingredient where ingredientId=:ingredientId")
     suspend fun getIngredientById(ingredientId: Int): Ingredient
 
 }

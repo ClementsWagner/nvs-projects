@@ -4,12 +4,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Ingredient")
+@Entity
 data class Ingredient(
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "ingredient_id")
-    var id: Int,
+    //@ColumnInfo(name = "ingredient_id")
+    var ingredientId: Int,
 
     @ColumnInfo(name = "ingredient_name")
     var name: String,

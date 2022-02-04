@@ -74,7 +74,7 @@ class IngredientsFragment : Fragment() {
 
     private fun listItemClicked(ingredient: Ingredient){
         val intent = Intent(this.requireContext(), IngredientDetail::class.java).apply {
-            putExtra("ingredient_id", ingredient.id)
+            putExtra("ingredient_id", ingredient.ingredientId)
         }
         startActivity(intent)
     }
