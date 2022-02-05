@@ -30,7 +30,6 @@ class RecipeAdapter(private val clickListener: (Recipe) -> Unit) : RecyclerView.
     fun setList(recipeList: List<Recipe>){
         recipes.clear()
         recipes.addAll(recipeList)
-        recipes.add(0, null)
     }
 
     class MyViewHolder(val binding: RecipeAdapterLayoutBinding): RecyclerView.ViewHolder(binding.root){

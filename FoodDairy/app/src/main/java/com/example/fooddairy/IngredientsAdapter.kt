@@ -30,7 +30,6 @@ class IngredientsAdapter(private val clickListener: (Ingredient) -> Unit) : Recy
     fun setList(ingredientList: List<Ingredient>){
         ingredients.clear();
         ingredients.addAll(ingredientList)
-        ingredients.add(0, null)
     }
 
     class MyViewHolder(val binding: IngredientAdapterLayoutBinding) : RecyclerView.ViewHolder(binding.root){

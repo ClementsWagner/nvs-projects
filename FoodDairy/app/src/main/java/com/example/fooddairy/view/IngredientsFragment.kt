@@ -45,7 +45,7 @@ class IngredientsFragment : Fragment() {
         val factory = ViewModelFactory(ingredientRepository)
         ingredientViewModel = ViewModelProvider(this, factory).get(IngredientViewModel::class.java)
         binding.myViewModel = ingredientViewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.ingredientFAB.setOnClickListener {
             val intent = Intent(this.requireContext(), EditIngredient::class.java)
