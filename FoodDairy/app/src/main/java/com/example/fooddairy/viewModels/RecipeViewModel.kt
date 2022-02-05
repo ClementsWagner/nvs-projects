@@ -26,6 +26,15 @@ class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel
     }
 
     fun initDetails(recipeId: Int) = viewModelScope.launch {
-        //val recipe = recipeRepository.get
+        val recipe = recipeRepository.getRecipeById(recipeId)
+
+        recipeName.value = recipe.recipe.name
+        recipeDescription.value = recipe.recipe.description
+    }
+
+    fun getAllRecipeIngredients(recipeId: Int) = liveData{
+        recipeRepository.getIngredientsWithAmount(recipeId).collect{
+            emit(it)
+        }
     }
 }
