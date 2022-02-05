@@ -1,5 +1,6 @@
 package com.example.fooddairy.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddairy.IngredientsAdapter
 import com.example.fooddairy.R
 import com.example.fooddairy.RecipeAdapter
+import com.example.fooddairy.RecipeDetail
 import com.example.fooddairy.databinding.FragmentIngredientsBinding
 import com.example.fooddairy.databinding.FragmentRecipeBinding
 import com.example.fooddairy.db.FoodDairyDatabase
@@ -59,6 +61,9 @@ class RecipeFragment : Fragment() {
     }
 
     private fun listItemClicked(recipe: Recipe){
-
+        val intent = Intent(this.requireContext(), RecipeDetail::class.java).apply {
+            putExtra("recipe_id", recipe.recipeId)
+        }
+        startActivity(intent)
     }
 }
