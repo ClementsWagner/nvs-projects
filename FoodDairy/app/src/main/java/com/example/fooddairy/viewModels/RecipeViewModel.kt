@@ -1,9 +1,8 @@
 package com.example.fooddairy.viewModels
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.fooddairy.RecipeIngredientAdapter
+import com.example.fooddairy.db.IngredientWithAmount
 import com.example.fooddairy.db.Recipe
 import com.example.fooddairy.db.RecipeRepository
 import com.example.fooddairy.db.RecipeWithIngredient
@@ -12,8 +11,31 @@ import kotlinx.coroutines.launch
 
 class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel() {
 
+    private var add: Boolean = true
+    val saveOrAddButtonText = MutableLiveData<String>()
+    private lateinit var recipeToSaveOrAdd: Recipe
+//    private val ingredientsToSaveOrAdd: LiveData<List<IngredientWithAmount>>()
     val recipeName= MutableLiveData<String>()
     val recipeDescription = MutableLiveData<String>()
+
+    init {
+        saveOrAddButtonText.value = "Add"
+    }
+
+    fun initEditRecipe(recipeId: Int) = viewModelScope.launch{
+        add = false
+        saveOrAddButtonText.value = "Save"
+        recipeToSaveOrAdd = recipeRepository.getRecipeById(recipeId)
+        recipeName.value = recipeToSaveOrAdd.name
+        recipeDescription.value = recipeToSaveOrAdd.description
+    }
+
+    fun initAddRecipe(){
+        add = true
+        saveOrAddButtonText.value = "Add"
+        recipeName.value = ""
+        recipeDescription.value = ""
+    }
 
     fun getAllRecipes() = liveData {
         recipeRepository.recipes.collect {
@@ -21,12 +43,18 @@ class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel
         }
     }
 
-    fun insertRecipe(newRecipe: Recipe) = viewModelScope.launch {
-        recipeRepository.insertRecipe(newRecipe)
+    fun insertRecipe() = viewModelScope.launch {
+        //recipeRepository.insertRecipe(newRecipe)
+    }
+
+    fun updateRecipe() = viewModelScope.launch {
+        recipeToSaveOrAdd.name = recipeName.value!!
+        recipeToSaveOrAdd.description = recipeDescription.value!!
+        recipeRepository.updateRecipe(recipeToSaveOrAdd)
     }
 
     fun initDetails(recipeId: Int) = viewModelScope.launch {
-        val recipe = recipeRepository.getRecipeById(recipeId)
+        val recipe = recipeRepository.getRecipeDetailsById(recipeId)
 
         recipeName.value = recipe.recipe.name
         recipeDescription.value = recipe.recipe.description

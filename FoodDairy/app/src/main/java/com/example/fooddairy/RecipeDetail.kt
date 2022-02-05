@@ -40,7 +40,7 @@ class RecipeDetail : AppCompatActivity() {
 
         initRecycler(recipeId)
         recipeViewModel.initDetails(recipeId)
-        
+
     }
 
     private fun initRecycler(recipeId: Int){
@@ -73,5 +73,10 @@ class RecipeDetail : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        recipeViewModel.initDetails(recipeId)
+        super.onResume()
     }
 }
