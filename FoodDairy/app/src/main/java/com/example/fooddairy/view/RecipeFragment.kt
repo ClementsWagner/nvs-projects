@@ -8,10 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fooddairy.IngredientsAdapter
-import com.example.fooddairy.R
-import com.example.fooddairy.RecipeAdapter
-import com.example.fooddairy.RecipeDetail
+import com.example.fooddairy.*
 import com.example.fooddairy.databinding.FragmentIngredientsBinding
 import com.example.fooddairy.databinding.FragmentRecipeBinding
 import com.example.fooddairy.db.FoodDairyDatabase
@@ -41,6 +38,7 @@ class RecipeFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         initRecycler()
+        binding.recipeFAB.setOnClickListener { onAdd() }
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -64,6 +62,11 @@ class RecipeFragment : Fragment() {
         val intent = Intent(this.requireContext(), RecipeDetail::class.java).apply {
             putExtra("recipe_id", recipe.recipeId)
         }
+        startActivity(intent)
+    }
+
+    private fun onAdd(){
+        val intent = Intent(this.requireContext(), EditRecipe::class.java)
         startActivity(intent)
     }
 }

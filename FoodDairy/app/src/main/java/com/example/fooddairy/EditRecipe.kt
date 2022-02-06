@@ -1,7 +1,10 @@
 package com.example.fooddairy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.Visibility
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -33,13 +36,21 @@ class EditRecipe : AppCompatActivity() {
         val recipeId: Int = intent.getIntExtra("recipe_id", 0)
 
         if(recipeId == 0){
+            changeVisibility(View.GONE)
             recipeViewModel.initAddRecipe()
             binding.SaveOrAddRecipeBtn.setOnClickListener {
-                recipeViewModel.insertRecipe()
-                finish()
+                recipeViewModel.insertRecipe().observe(this,{
+                    val intent = Intent(this, EditRecipe::class.java).apply {
+                        putExtra("recipe_id", it.toInt())
+                    }
+                    finish()
+                    startActivity(intent)
+                })
             }
         }
         else{
+            changeVisibility(View.VISIBLE)
+            initRecycler(recipeId)
             recipeViewModel.initEditRecipe(recipeId)
             binding.SaveOrAddRecipeBtn.setOnClickListener {
                 recipeViewModel.updateRecipe()
@@ -48,8 +59,12 @@ class EditRecipe : AppCompatActivity() {
         }
 
         binding.CancelRecipeBtn.setOnClickListener { finish() }
+    }
 
-        initRecycler(recipeId)
+    private fun changeVisibility(visibility: Int){
+        binding.recipeIngredientFAB.visibility = visibility
+        binding.editRecipeIngredientList.visibility = visibility
+        binding.editRecipeDescription.visibility = visibility
     }
 
     private fun initRecycler(recipeId: Int){

@@ -1,6 +1,8 @@
 package com.example.fooddairy.viewModels
 
 import androidx.lifecycle.*
+import android.transition.Visibility
+import android.view.View
 import com.example.fooddairy.RecipeIngredientAdapter
 import com.example.fooddairy.db.IngredientWithAmount
 import com.example.fooddairy.db.Recipe
@@ -11,10 +13,8 @@ import kotlinx.coroutines.launch
 
 class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel() {
 
-    private var add: Boolean = true
     val saveOrAddButtonText = MutableLiveData<String>()
     private lateinit var recipeToSaveOrAdd: Recipe
-//    private val ingredientsToSaveOrAdd: LiveData<List<IngredientWithAmount>>()
     val recipeName= MutableLiveData<String>()
     val recipeDescription = MutableLiveData<String>()
 
@@ -23,7 +23,6 @@ class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel
     }
 
     fun initEditRecipe(recipeId: Int) = viewModelScope.launch{
-        add = false
         saveOrAddButtonText.value = "Save"
         recipeToSaveOrAdd = recipeRepository.getRecipeById(recipeId)
         recipeName.value = recipeToSaveOrAdd.name
@@ -31,7 +30,6 @@ class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel
     }
 
     fun initAddRecipe(){
-        add = true
         saveOrAddButtonText.value = "Add"
         recipeName.value = ""
         recipeDescription.value = ""
@@ -43,8 +41,9 @@ class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel
         }
     }
 
-    fun insertRecipe() = viewModelScope.launch {
-        //recipeRepository.insertRecipe(newRecipe)
+    fun insertRecipe() = liveData {
+        val recipeId = recipeRepository.insertRecipe(Recipe(0,recipeName.value!!, ""))
+        emit(recipeId)
     }
 
     fun updateRecipe() = viewModelScope.launch {
