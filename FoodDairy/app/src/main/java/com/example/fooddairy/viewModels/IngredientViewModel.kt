@@ -18,6 +18,7 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
     val saveOrAddButtonText = MutableLiveData<String>()
     val inputName = MutableLiveData<String>()
     val inputCalories = MutableLiveData<String>()
+    val nutritionFacts = MutableLiveData<String>()
 
     init {
         saveOrAddButtonText.value = "Add"
@@ -54,6 +55,7 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
         ingredientToSaveOrAdd = ingredientRepository.getIngredientById(ingredientId)
         inputName.value = ingredientToSaveOrAdd.name
         inputCalories.value = ingredientToSaveOrAdd.calories.toString()
+        nutritionFacts.value = ingredientToSaveOrAdd.toString()
     }
 
 
@@ -63,7 +65,7 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
         }
     }
 
-    fun deleteIngredients(ingredient: Ingredient) = viewModelScope.launch {
+    fun deleteIngredient(ingredient: Ingredient) = viewModelScope.launch {
         ingredientRepository.deleteIngredient(ingredient);
     }
 }

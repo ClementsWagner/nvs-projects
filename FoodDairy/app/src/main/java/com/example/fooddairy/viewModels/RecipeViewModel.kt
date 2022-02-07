@@ -17,6 +17,7 @@ class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel
     private lateinit var recipeToSaveOrAdd: Recipe
     val recipeName= MutableLiveData<String>()
     val recipeDescription = MutableLiveData<String>()
+    val nutritionFacts = MutableLiveData<String>()
 
     init {
         saveOrAddButtonText.value = "Add"
@@ -63,5 +64,37 @@ class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel
         recipeRepository.getIngredientsWithAmount(recipeId).collect{
             emit(it)
         }
+    }
+
+    fun deleteRecipe(recipe: Recipe) = viewModelScope.launch {
+        recipeRepository.deleteRecipe(recipe)
+    }
+
+    fun updateNutritionFacts(ingredients: List<IngredientWithAmount>) = viewModelScope.launch {
+        var calories: Int = 0
+        var fat: Float = 0f
+        var carbohydrate: Float = 0f
+        var protein: Float = 0f
+        var sugar: Float = 0f
+        var salt: Float = 0f
+
+        for (ingredient in ingredients){
+            calories += (ingredient.ingredient.calories * (ingredient.amount/100)).toInt()
+            fat += (ingredient.ingredient.fat)*(ingredient.amount/100)
+            carbohydrate += (ingredient.ingredient.carbohydrates)*(ingredient.amount/100)
+            protein += (ingredient.ingredient.protein)*(ingredient.amount/100)
+            sugar += (ingredient.ingredient.sugar)*(ingredient.amount/100)
+            salt += (ingredient.ingredient.salt)*(ingredient.amount/100)
+        }
+        var result: String = ""
+        val pad: Int = 25
+        result += ("Calories".padEnd(pad, ' ')+"$calories\n")
+        result += ("Fat".padEnd(pad, ' ')+"$fat\n")
+        result += ("Carbohydrates".padEnd(pad, ' ')+"$carbohydrate\n")
+        result += ("Protein".padEnd(pad, ' ')+"$protein\n")
+        result += ("Sugar".padEnd(pad, ' ')+"$sugar\n")
+        result += ("Salt".padEnd(pad, ' ')+"$salt")
+
+        nutritionFacts.value = result
     }
 }

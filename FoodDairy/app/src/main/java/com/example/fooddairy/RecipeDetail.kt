@@ -55,6 +55,7 @@ class RecipeDetail : AppCompatActivity() {
         recipeViewModel.getAllRecipeIngredients(recipeId).observe(this,{
             adapter.setList(it)
             adapter.notifyDataSetChanged()
+            recipeViewModel.updateNutritionFacts(it)
         })
     }
 

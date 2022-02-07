@@ -56,6 +56,12 @@ class EditRecipe : AppCompatActivity() {
                 recipeViewModel.updateRecipe()
                 finish()
             }
+            binding.recipeIngredientFAB.setOnClickListener {
+                val intent = Intent(this, AddRecipeIngredient::class.java).apply {
+                    putExtra("recipe_id", recipeId)
+                }
+                startActivity(intent)
+            }
         }
 
         binding.CancelRecipeBtn.setOnClickListener { finish() }

@@ -43,13 +43,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="10dp"
                 android:text="@={myViewModel.recipeDescription}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.045"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recipeDetailIngredientList" />
+                app:layout_constraintTop_toBottomOf="@+id/recipeNutritionFacts" />
 
             <Button
                 android:id="@+id/recipeEditBtn"
@@ -61,6 +61,17 @@
                 app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recipeDetailDescription" />
+
+            <TextView
+                android:id="@+id/recipeNutritionFacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@={myViewModel.nutritionFacts}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recipeDetailIngredientList" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

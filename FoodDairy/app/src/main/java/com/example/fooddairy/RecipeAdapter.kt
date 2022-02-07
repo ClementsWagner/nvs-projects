@@ -9,7 +9,8 @@ import com.example.fooddairy.databinding.RecipeAdapterLayoutBinding
 import com.example.fooddairy.db.Ingredient
 import com.example.fooddairy.db.Recipe
 
-class RecipeAdapter(private val clickListener: (Recipe) -> Unit) : RecyclerView.Adapter<RecipeAdapter.MyViewHolder>() {
+class RecipeAdapter(private val clickListener: (Recipe) -> Unit,
+                    private val onDelete: (Recipe) -> Unit) : RecyclerView.Adapter<RecipeAdapter.MyViewHolder>() {
 
     val recipes = ArrayList<Recipe?>()
 
@@ -20,7 +21,7 @@ class RecipeAdapter(private val clickListener: (Recipe) -> Unit) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(recipes[position], clickListener)
+        holder.bind(recipes[position], clickListener, onDelete)
     }
 
     override fun getItemCount(): Int {
@@ -33,11 +34,15 @@ class RecipeAdapter(private val clickListener: (Recipe) -> Unit) : RecyclerView.
     }
 
     class MyViewHolder(val binding: RecipeAdapterLayoutBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(recipe: Recipe?, clickListener: (Recipe) -> Unit){
+        fun bind(recipe: Recipe?, clickListener: (Recipe) -> Unit,
+                 onDelete: (Recipe) -> Unit){
             if(recipe != null){
                 binding.tvRecipeName.text = recipe.name
                 binding.recipeListItemLayout.setOnClickListener{
                     clickListener(recipe)
+                }
+                binding.deleteRecipe.setOnClickListener {
+                    onDelete(recipe)
                 }
             }
         }

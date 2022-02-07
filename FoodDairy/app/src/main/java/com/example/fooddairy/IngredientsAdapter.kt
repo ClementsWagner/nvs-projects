@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddairy.databinding.IngredientAdapterLayoutBinding
 import com.example.fooddairy.db.Ingredient
 
-class IngredientsAdapter(private val clickListener: (Ingredient) -> Unit) : RecyclerView.Adapter<IngredientsAdapter.MyViewHolder>()
+class IngredientsAdapter(private val clickListener: (Ingredient) -> Unit,
+                         private val onDelete: (Ingredient) -> Unit) : RecyclerView.Adapter<IngredientsAdapter.MyViewHolder>()
 {
     val ingredients = ArrayList<Ingredient?>()
 
@@ -20,7 +21,7 @@ class IngredientsAdapter(private val clickListener: (Ingredient) -> Unit) : Recy
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-            holder.bind(ingredients[position], clickListener)
+            holder.bind(ingredients[position], clickListener, onDelete)
     }
 
     override fun getItemCount(): Int {
@@ -33,12 +34,17 @@ class IngredientsAdapter(private val clickListener: (Ingredient) -> Unit) : Recy
     }
 
     class MyViewHolder(val binding: IngredientAdapterLayoutBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(ingredient: Ingredient?, clickListener: (Ingredient) -> Unit) {
+        fun bind(ingredient: Ingredient?,
+                 clickListener: (Ingredient) -> Unit,
+                 onDelete: (Ingredient) -> Unit) {
             if(ingredient!=null){
                 binding.tvName.text = ingredient.name
                 binding.tvCalories.text = ingredient.calories.toString()
                 binding.listItemLayout.setOnClickListener{
                     clickListener(ingredient)
+                }
+                binding.deleteIngredient.setOnClickListener {
+                    onDelete(ingredient)
                 }
             }
         }

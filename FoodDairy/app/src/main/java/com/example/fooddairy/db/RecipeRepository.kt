@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 class RecipeRepository(private val dao: RecipeDAO) {
 
 
-    val recipes = dao.getAllRecipes()
+    val recipes: Flow<List<Recipe>> = dao.getAllRecipes()
 
 
     suspend fun insertRecipe(recipe: Recipe): Long{
@@ -26,7 +26,10 @@ class RecipeRepository(private val dao: RecipeDAO) {
     }
 
     suspend fun updateRecipe(newRecipe: Recipe){
-       val tmp = dao.insertRecipe(newRecipe)
+       dao.insertRecipe(newRecipe)
     }
 
+    suspend fun deleteRecipe(recipe: Recipe){
+        dao.deleteRecipe(recipe)
+    }
 }

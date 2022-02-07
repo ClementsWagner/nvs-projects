@@ -54,15 +54,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailIngredientName" />
 
+        <TextView
+            android:id="@+id/nutritionFactsIngredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@={myViewModel.nutritionFacts}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.116"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDetailCalories" />
+
         <Button
             android:id="@+id/EditIngredientButton"
             android:layout_width="67dp"
             android:layout_height="48dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="16dp"
             android:text="Edit"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.046"
+            app:layout_constraintHorizontal_bias="0.058"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDetailCalories" />
+            app:layout_constraintTop_toBottomOf="@+id/nutritionFactsIngredient" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

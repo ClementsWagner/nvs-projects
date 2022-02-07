@@ -59,7 +59,8 @@ class IngredientsFragment : Fragment() {
 
     private fun initRecycler(){
         binding.ingredientsRecyclerView.layoutManager = LinearLayoutManager(this.requireContext())
-        adapter = IngredientsAdapter({selectedItem: Ingredient -> listItemClicked(selectedItem)})
+        adapter = IngredientsAdapter({selectedItem: Ingredient -> listItemClicked(selectedItem)},
+            {selectedItem: Ingredient -> ingredientViewModel.deleteIngredient(selectedItem)})
         binding.ingredientsRecyclerView.adapter = adapter
 
         displayIngredientsList()

@@ -45,7 +45,8 @@ class RecipeFragment : Fragment() {
 
     private fun initRecycler(){
         binding.recipeRecyclerView.layoutManager = LinearLayoutManager(this.requireContext())
-        adapter = RecipeAdapter({selectedItem: Recipe -> listItemClicked(selectedItem)})
+        adapter = RecipeAdapter({selectedItem: Recipe -> listItemClicked(selectedItem)},
+            {selectedItem: Recipe -> recipeViewModel.deleteRecipe(selectedItem)})
         binding.recipeRecyclerView.adapter = adapter
 
         displayRecipes()
