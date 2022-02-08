@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-
+        <variable
+            name="myViewModel"
+            type="com.example.fooddairy.viewModels.RecipeIngredientViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,13 +17,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="72dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="60dp"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/addIngredientAmount"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addIngredientRecipe"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
@@ -29,25 +31,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
-            app:layout_constraintBottom_toTopOf="@+id/addIngredientSpinner"
+            android:text="@={myViewModel.recipeName}"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.137" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/addIngredientAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="420dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="52dp"
             android:ems="10"
+            android:hint="Amount"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addIngredientSpinner"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/addIngredientUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="64dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/addIngredientAmount"
+            app:layout_constraintTop_toBottomOf="@+id/addIngredientSpinner" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

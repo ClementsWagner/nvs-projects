@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase
 abstract class FoodDairyDatabase : RoomDatabase() {
     abstract fun ingredientDao(): IngredientDAO
     abstract fun recipeDao(): RecipeDAO
+    abstract fun recipeIngredientDao(): RecipeIngredientDAO
 
     companion object {
         @Volatile

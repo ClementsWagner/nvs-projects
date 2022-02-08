@@ -15,14 +15,14 @@ data class Ingredient(
     var name: String,
 
     @ColumnInfo(name = "ingredient_calories")
-    var calories: Int){
+    var calories: Int = 0,
+    var unit: String = "",
+    var fat: Float = 0f,
+    var carbohydrates: Float = 0f,
+    var sugar: Float = 0f,
+    var protein: Float = 0f,
+    var salt: Float = 0f){
 
-    var unit: String = ""
-    var fat: Float = 0f
-    var carbohydrates: Float = 0f
-    var sugar: Float = 0f
-    var protein: Float = 0f
-    var salt: Float = 0f
 
     override fun toString(): String {
         var result: String = ""
