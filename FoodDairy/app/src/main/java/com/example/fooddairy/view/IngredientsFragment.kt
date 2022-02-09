@@ -60,7 +60,7 @@ class IngredientsFragment : Fragment() {
     private fun initRecycler(){
         binding.ingredientsRecyclerView.layoutManager = LinearLayoutManager(this.requireContext())
         adapter = IngredientsAdapter({selectedItem: Ingredient -> listItemClicked(selectedItem)},
-            {selectedItem: Ingredient -> ingredientViewModel.deleteIngredient(selectedItem)})
+            {selectedItem: Ingredient, position: Int -> onDeleteItem(selectedItem, position)})
         binding.ingredientsRecyclerView.adapter = adapter
 
         displayIngredientsList()
@@ -71,6 +71,11 @@ class IngredientsFragment : Fragment() {
             adapter.setList(it)
             adapter.notifyDataSetChanged()
         })
+    }
+
+    private fun onDeleteItem(ingredient: Ingredient, position: Int){
+        ingredientViewModel.deleteIngredient(ingredient)
+        adapter.notifyItemRemoved(position)
     }
 
     private fun listItemClicked(ingredient: Ingredient){

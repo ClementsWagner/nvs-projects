@@ -19,8 +19,6 @@ class RecipeIngredientViewModel(private val recipeIngredientRepository: RecipeIn
         recipeName.value = name
     }
 
-
-
     fun getAllIngredients(){
 
     }

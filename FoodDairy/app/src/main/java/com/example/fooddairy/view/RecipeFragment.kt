@@ -2,6 +2,7 @@ package com.example.fooddairy.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,7 +47,7 @@ class RecipeFragment : Fragment() {
     private fun initRecycler(){
         binding.recipeRecyclerView.layoutManager = LinearLayoutManager(this.requireContext())
         adapter = RecipeAdapter({selectedItem: Recipe -> listItemClicked(selectedItem)},
-            {selectedItem: Recipe -> recipeViewModel.deleteRecipe(selectedItem)})
+            { selectedItem: Recipe, position: Int -> onDeleteItem(selectedItem, position) })
         binding.recipeRecyclerView.adapter = adapter
 
         displayRecipes()
@@ -57,6 +58,11 @@ class RecipeFragment : Fragment() {
             adapter.setList(it)
             adapter.notifyDataSetChanged()
         })
+    }
+
+    private fun onDeleteItem(recipe: Recipe, position: Int){
+        recipeViewModel.deleteRecipe(recipe)
+        adapter.notifyItemRemoved(position)
     }
 
     private fun listItemClicked(recipe: Recipe){

@@ -10,14 +10,14 @@ import com.example.fooddairy.db.Ingredient
 import com.example.fooddairy.db.Recipe
 
 class RecipeAdapter(private val clickListener: (Recipe) -> Unit,
-                    private val onDelete: (Recipe) -> Unit) : RecyclerView.Adapter<RecipeAdapter.MyViewHolder>() {
+                    private val onDelete: (Recipe, Int) -> Unit) : RecyclerView.Adapter<RecipeAdapter.MyViewHolder>() {
 
     val recipes = ArrayList<Recipe?>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding: RecipeAdapterLayoutBinding = DataBindingUtil.inflate(layoutInflater, R.layout.recipe_adapter_layout, parent, false)
-        return RecipeAdapter.MyViewHolder(binding);
+        return MyViewHolder(binding);
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -34,15 +34,17 @@ class RecipeAdapter(private val clickListener: (Recipe) -> Unit,
     }
 
     class MyViewHolder(val binding: RecipeAdapterLayoutBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(recipe: Recipe?, clickListener: (Recipe) -> Unit,
-                 onDelete: (Recipe) -> Unit){
+        fun bind(recipe: Recipe?,
+                 clickListener: (Recipe) -> Unit,
+                 onDelete: (Recipe, Int) -> Unit){
             if(recipe != null){
                 binding.tvRecipeName.text = recipe.name
-                binding.recipeListItemLayout.setOnClickListener{
+
+                binding.recipeListItem.setOnClickListener{
                     clickListener(recipe)
                 }
                 binding.deleteRecipe.setOnClickListener {
-                    onDelete(recipe)
+                    onDelete(recipe, this.adapterPosition)
                 }
             }
         }

@@ -10,7 +10,7 @@ import com.example.fooddairy.databinding.IngredientAdapterLayoutBinding
 import com.example.fooddairy.db.Ingredient
 
 class IngredientsAdapter(private val clickListener: (Ingredient) -> Unit,
-                         private val onDelete: (Ingredient) -> Unit) : RecyclerView.Adapter<IngredientsAdapter.MyViewHolder>()
+                         private val onDelete: (Ingredient, Int) -> Unit) : RecyclerView.Adapter<IngredientsAdapter.MyViewHolder>()
 {
     val ingredients = ArrayList<Ingredient?>()
 
@@ -36,15 +36,15 @@ class IngredientsAdapter(private val clickListener: (Ingredient) -> Unit,
     class MyViewHolder(val binding: IngredientAdapterLayoutBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(ingredient: Ingredient?,
                  clickListener: (Ingredient) -> Unit,
-                 onDelete: (Ingredient) -> Unit) {
+                 onDelete: (Ingredient, Int) -> Unit) {
             if(ingredient!=null){
                 binding.tvName.text = ingredient.name
-                binding.tvCalories.text = ingredient.calories.toString()
-                binding.listItemLayout.setOnClickListener{
+
+                binding.ingredientListItem.setOnClickListener{
                     clickListener(ingredient)
                 }
                 binding.deleteIngredient.setOnClickListener {
-                    onDelete(ingredient)
+                    onDelete(ingredient, this.adapterPosition)
                 }
             }
         }

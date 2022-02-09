@@ -29,7 +29,7 @@ class RecipeRepository(private val dao: RecipeDAO) {
        dao.insertRecipe(newRecipe)
     }
 
-    suspend fun deleteRecipe(recipe: Recipe){
-        dao.deleteRecipe(recipe)
+    suspend fun deleteRecipe(recipe: Recipe) : Int{
+        return dao.deleteRecipe(recipe)
     }
 }
