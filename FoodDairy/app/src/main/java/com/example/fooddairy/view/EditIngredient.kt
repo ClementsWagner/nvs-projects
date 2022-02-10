@@ -7,10 +7,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.fooddairy.R
 import com.example.fooddairy.databinding.ActivityEditIngredientBinding
-import com.example.fooddairy.databinding.ActivityIngredientDetailBinding
 import com.example.fooddairy.db.FoodDairyDatabase
-import com.example.fooddairy.db.IngredientDAO
-import com.example.fooddairy.db.IngredientRepository
+import com.example.fooddairy.db.repositories.IngredientRepository
 import com.example.fooddairy.viewModels.IngredientViewModel
 import com.example.fooddairy.viewModels.ViewModelFactory
 

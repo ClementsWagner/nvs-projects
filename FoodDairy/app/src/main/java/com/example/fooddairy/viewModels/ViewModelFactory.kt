@@ -2,9 +2,9 @@ package com.example.fooddairy.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.fooddairy.db.IngredientRepository
-import com.example.fooddairy.db.RecipeIngredientRepository
-import com.example.fooddairy.db.RecipeRepository
+import com.example.fooddairy.db.repositories.IngredientRepository
+import com.example.fooddairy.db.repositories.RecipeIngredientRepository
+import com.example.fooddairy.db.repositories.RecipeRepository
 import java.lang.IllegalArgumentException
 
 class ViewModelFactory<R>(

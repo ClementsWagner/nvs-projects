@@ -28,10 +28,6 @@ interface RecipeDAO {
     suspend fun getRecipeById(recipeId: Int): Recipe
 
     @Transaction
-    @Query("SELECT * FROM recipe WHERE :recipeId=recipeId")
-    suspend fun getRecipeDetailsById(recipeId: Int): List<RecipeWithIngredient>
-
-    @Transaction
     @Query("SELECT * FROM recipeingredient INNER JOIN ingredient ON recipeingredient.ingredientId = ingredient.ingredientId WHERE recipeingredient.recipeId = :recipeId")
     fun getIngredientWithAmount(recipeId: Int): Flow<List<IngredientWithAmount>>
 

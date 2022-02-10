@@ -1,5 +1,6 @@
-package com.example.fooddairy.db
+package com.example.fooddairy.db.repositories
 
+import com.example.fooddairy.db.RecipeIngredientDAO
 import com.example.fooddairy.db.model.RecipeIngredient
 
 class RecipeIngredientRepository(private val dao: RecipeIngredientDAO, private val recipeId: Int) {

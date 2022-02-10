@@ -1,5 +1,6 @@
-package com.example.fooddairy.db
+package com.example.fooddairy.db.repositories
 
+import com.example.fooddairy.db.IngredientDAO
 import com.example.fooddairy.db.model.Ingredient
 import kotlinx.coroutines.flow.Flow
 

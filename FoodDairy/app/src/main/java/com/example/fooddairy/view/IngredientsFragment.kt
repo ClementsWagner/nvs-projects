@@ -14,7 +14,7 @@ import com.example.fooddairy.viewModels.ViewModelFactory
 import com.example.fooddairy.databinding.FragmentIngredientsBinding
 import com.example.fooddairy.db.FoodDairyDatabase
 import com.example.fooddairy.db.model.Ingredient
-import com.example.fooddairy.db.IngredientRepository
+import com.example.fooddairy.db.repositories.IngredientRepository
 import com.example.fooddairy.viewModels.IngredientViewModel
 
 // TODO: Rename parameter arguments, choose names that match

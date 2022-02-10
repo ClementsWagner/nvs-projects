@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.fooddairy.databinding.ActivityAddRecipeIngredientBinding
 import com.example.fooddairy.db.*
 import com.example.fooddairy.db.model.Ingredient
+import com.example.fooddairy.db.repositories.IngredientRepository
+import com.example.fooddairy.db.repositories.RecipeIngredientRepository
 import com.example.fooddairy.utils.IngredientSpinnerAdapter
 import com.example.fooddairy.viewModels.RecipeIngredientViewModel
 import com.example.fooddairy.viewModels.ViewModelFactory

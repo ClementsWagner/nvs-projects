@@ -1,17 +1,14 @@
 package com.example.fooddairy
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.MenuItem
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.fooddairy.databinding.ActivityIngredientDetailBinding
 import com.example.fooddairy.db.FoodDairyDatabase
-import com.example.fooddairy.db.IngredientRepository
+import com.example.fooddairy.db.repositories.IngredientRepository
 import com.example.fooddairy.view.EditIngredient
 import com.example.fooddairy.viewModels.IngredientViewModel
 import com.example.fooddairy.viewModels.ViewModelFactory
