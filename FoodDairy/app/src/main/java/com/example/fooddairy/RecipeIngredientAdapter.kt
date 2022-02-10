@@ -1,14 +1,18 @@
 package com.example.fooddairy
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddairy.databinding.RecipeIngredientLayoutAdapterBinding
 import com.example.fooddairy.db.IngredientWithAmount
 import androidx.databinding.DataBindingUtil.inflate
+import kotlin.reflect.KParameter
 
-class RecipeIngredientAdapter : RecyclerView.Adapter<RecipeIngredientAdapter.MyViewHolder>() {
+class RecipeIngredientAdapter(
+    private val deletable: Boolean = false,
+    private val onDelete: (IngredientWithAmount,Int) -> Unit = {_:IngredientWithAmount,_:Int ->}) : RecyclerView.Adapter<RecipeIngredientAdapter.MyViewHolder>() {
 
     val recipeIngredients = ArrayList<IngredientWithAmount>()
 
@@ -20,7 +24,7 @@ class RecipeIngredientAdapter : RecyclerView.Adapter<RecipeIngredientAdapter.MyV
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(recipeIngredients[position])
+        holder.bind(recipeIngredients[position], deletable, onDelete)
     }
 
     override fun getItemCount(): Int {
@@ -33,9 +37,21 @@ class RecipeIngredientAdapter : RecyclerView.Adapter<RecipeIngredientAdapter.MyV
     }
 
     class MyViewHolder(val binding: RecipeIngredientLayoutAdapterBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(ingredient: IngredientWithAmount){
+        fun bind(ingredient: IngredientWithAmount,
+                 deletable: Boolean = false,
+                 onDelete: (IngredientWithAmount,Int) -> Unit = {_:IngredientWithAmount,_:Int ->}){
             binding.recipeIngredientName.text = ingredient.ingredient.name
-            binding.recipeIngredientAmount.text = ingredient.amount.toString()
+            binding.recipeIngredientAmount.text = ingredient.amount.toString() + ingredient.ingredient.unit
+
+            if(deletable){
+                binding.deleteRecipeIngredient.visibility = View.VISIBLE
+                binding.deleteRecipeIngredient.setOnClickListener {
+                    onDelete(ingredient, this.adapterPosition)
+                }
+            }else{
+                binding.deleteRecipeIngredient.visibility = View.GONE
+            }
+
         }
 
     }

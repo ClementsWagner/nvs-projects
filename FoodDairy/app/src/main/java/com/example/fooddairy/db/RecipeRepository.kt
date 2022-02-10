@@ -33,4 +33,8 @@ class RecipeRepository(private val dao: RecipeDAO) {
         dao.deleteRecipeIngredients(recipe.recipeId)
         return dao.deleteRecipe(recipe)
     }
+
+    suspend fun deleteIngredientFromRecipe(recipeId: Int, ingredientId: Int){
+        dao.deleteIngredientFromRecipe(recipeId, ingredientId)
+    }
 }

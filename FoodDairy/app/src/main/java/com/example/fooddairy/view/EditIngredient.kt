@@ -2,6 +2,7 @@ package com.example.fooddairy.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.fooddairy.R
@@ -33,15 +34,27 @@ class EditIngredient : AppCompatActivity() {
         if(ingredientId!=0){
             ingredientViewModel.initUpdate(ingredientId)
             binding.SaveOrAddIngredientButton.setOnClickListener{
-                ingredientViewModel.updateIngredient()
-                finish()
+                if(ingredientViewModel.inputName.value.isNullOrEmpty()){
+                    Toast.makeText(this, "Please enter a name", Toast.LENGTH_SHORT).show()
+                }else if(ingredientViewModel.unit.value.isNullOrEmpty()){
+                    Toast.makeText(this, "Please enter a unit", Toast.LENGTH_SHORT).show()
+                }else{
+                    ingredientViewModel.updateIngredient()
+                    finish()
+                }
             }
         }
         else{
             ingredientViewModel.initAdd()
             binding.SaveOrAddIngredientButton.setOnClickListener{
-                ingredientViewModel.insertIngredient()
-                finish()
+                if(ingredientViewModel.inputName.value.isNullOrEmpty()){
+                    Toast.makeText(this, "Please enter a name", Toast.LENGTH_SHORT).show()
+                }else if(ingredientViewModel.unit.value.isNullOrEmpty()){
+                    Toast.makeText(this, "Please enter a unit", Toast.LENGTH_SHORT).show()
+                }else{
+                    ingredientViewModel.insertIngredient()
+                    finish()
+                }
             }
         }
 

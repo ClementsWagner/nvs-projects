@@ -54,13 +54,14 @@ class RecipeFragment : Fragment() {
 
     private fun displayRecipes(){
         recipeViewModel.getAllRecipes().observe(viewLifecycleOwner,{
-            adapter.setList(recipeViewModel.recipeList)
+            adapter.setList(it)
             adapter.notifyDataSetChanged()
         })
     }
 
     private fun onDeleteItem(recipe: Recipe, position: Int){
         recipeViewModel.deleteRecipe(recipe)
+        adapter.notifyItemRemoved(position)
     }
 
     private fun listItemClicked(recipe: Recipe){

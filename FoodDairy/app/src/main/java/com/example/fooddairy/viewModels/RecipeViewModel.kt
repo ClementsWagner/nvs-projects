@@ -73,6 +73,11 @@ class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel
         recipeRepository.deleteRecipe(recipe)
     }
 
+    fun deleteIngredientsFromRecipe(recipeId: Int, ingredientId: Int) = viewModelScope.launch {
+        recipeRepository.deleteIngredientFromRecipe(recipeId,ingredientId)
+    }
+
+
     fun updateNutritionFacts(ingredients: List<IngredientWithAmount>) = viewModelScope.launch {
         var calories: Int = 0
         var fat: Float = 0f

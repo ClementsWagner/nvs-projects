@@ -1,18 +1,14 @@
 package com.example.fooddairy
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.Visibility
-import android.util.AttributeSet
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddairy.databinding.ActivityEditRecipeBinding
-import com.example.fooddairy.databinding.ActivityRecipeDetailBinding
 import com.example.fooddairy.db.FoodDairyDatabase
 import com.example.fooddairy.db.IngredientWithAmount
 import com.example.fooddairy.db.RecipeRepository
@@ -29,9 +25,9 @@ class EditRecipe : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_recipe)
-        val dao = FoodDairyDatabase.getInstance(this).recipeDao()
-        val repository = RecipeRepository(dao)
-        val factory = ViewModelFactory(repository)
+        val recipeDAO = FoodDairyDatabase.getInstance(this).recipeDao()
+        val recipeRepository = RecipeRepository(recipeDAO)
+        val factory = ViewModelFactory(recipeRepository)
         recipeViewModel = ViewModelProvider(this, factory).get(RecipeViewModel::class.java)
         binding.myViewModel = recipeViewModel
         binding.lifecycleOwner = this
@@ -42,13 +38,18 @@ class EditRecipe : AppCompatActivity() {
             changeVisibility(View.GONE)
             recipeViewModel.initAddRecipe()
             binding.SaveOrAddRecipeBtn.setOnClickListener {
-                recipeViewModel.insertRecipe().observe(this,{
-                    val intent = Intent(this, EditRecipe::class.java).apply {
-                        putExtra("recipe_id", it.toInt())
-                    }
-                    finish()
-                    startActivity(intent)
-                })
+                if(recipeViewModel.recipeName.value.isNullOrEmpty()){
+                    Toast.makeText(this, "Please enter a name", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    recipeViewModel.insertRecipe().observe(this,{
+                        val intent = Intent(this, EditRecipe::class.java).apply {
+                            putExtra("recipe_id", it.toInt())
+                        }
+                        finish()
+                        startActivity(intent)
+                    })
+                }
             }
         }
         else{
@@ -56,8 +57,13 @@ class EditRecipe : AppCompatActivity() {
             initRecycler(recipeId)
             recipeViewModel.initEditRecipe(recipeId)
             binding.SaveOrAddRecipeBtn.setOnClickListener {
-                recipeViewModel.updateRecipe()
-                finish()
+                if(recipeViewModel.recipeName.value.isNullOrEmpty()) {
+                    Toast.makeText(this, "Please enter a name", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    recipeViewModel.updateRecipe()
+                    finish()
+                }
             }
             binding.recipeIngredientFAB.setOnClickListener {
                 val intent = Intent(this, AddRecipeIngredient::class.java).apply {
@@ -79,7 +85,9 @@ class EditRecipe : AppCompatActivity() {
 
     private fun initRecycler(recipeId: Int){
         binding.editRecipeIngredientList.layoutManager = LinearLayoutManager(this)
-        adapter = RecipeIngredientAdapter()
+        adapter = RecipeIngredientAdapter(true) { ingredient: IngredientWithAmount, position: Int ->
+            onDeleteItem(recipeId, ingredient, position)
+        }
         binding.editRecipeIngredientList.adapter = adapter
 
         displayRecipeIngredients(recipeId)
@@ -92,9 +100,10 @@ class EditRecipe : AppCompatActivity() {
         })
     }
 
+
     private fun onDeleteItem(recipeId: Int, ingredientWithAmount: IngredientWithAmount, position: Int){
-
+        recipeViewModel.deleteIngredientsFromRecipe(recipeId, ingredientWithAmount.ingredient.ingredientId)
+        adapter.notifyItemRemoved(position)
     }
-
 
 }

@@ -38,7 +38,7 @@ class RecipeDetail : AppCompatActivity() {
 
         binding.recipeEditBtn.setOnClickListener { onEditClick(recipeId) }
 
-        initRecycler(recipeId)
+
         recipeViewModel.initDetails(recipeId)
 
     }
@@ -74,6 +74,11 @@ class RecipeDetail : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initRecycler(recipeId)
     }
 
     override fun onResume() {
