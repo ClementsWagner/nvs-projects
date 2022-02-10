@@ -1,4 +1,4 @@
-package com.example.fooddairy.db
+package com.example.fooddairy.db.roomDAOs
 
 import androidx.room.*
 import com.example.fooddairy.db.model.Ingredient

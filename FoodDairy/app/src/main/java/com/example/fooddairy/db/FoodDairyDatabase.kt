@@ -7,6 +7,9 @@ import androidx.room.RoomDatabase
 import com.example.fooddairy.db.model.Ingredient
 import com.example.fooddairy.db.model.Recipe
 import com.example.fooddairy.db.model.RecipeIngredient
+import com.example.fooddairy.db.roomDAOs.IngredientDAO
+import com.example.fooddairy.db.roomDAOs.RecipeDAO
+import com.example.fooddairy.db.roomDAOs.RecipeIngredientDAO
 
 @Database(entities = [Ingredient::class, Recipe::class, RecipeIngredient::class], version = 4)
 abstract class FoodDairyDatabase : RoomDatabase() {
