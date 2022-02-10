@@ -88,7 +88,7 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
         ingredientToSaveOrAdd = ingredientRepository.getIngredientById(ingredientId)
         inputName.value = ingredientToSaveOrAdd.name
         inputCalories.value = ingredientToSaveOrAdd.calories.toString()
-        nutritionFacts.value = ingredientToSaveOrAdd.toString()
+        nutritionFacts.value = ingredientToSaveOrAdd.getNutritionFactString()
     }
 
 

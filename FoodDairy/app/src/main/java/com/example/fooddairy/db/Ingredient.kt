@@ -23,8 +23,7 @@ data class Ingredient(
     var protein: Float = 0f,
     var salt: Float = 0f){
 
-
-    override fun toString(): String {
+    fun getNutritionFactString(): String{
         var result: String = ""
         val pad: Int = 25
         result += "Nutrition facts per 100 $unit:\n"
@@ -35,5 +34,9 @@ data class Ingredient(
         result += ("Sugar".padEnd(pad, ' ')+"$sugar\n")
         result += ("Salt".padEnd(pad, ' ')+"$salt")
         return result
+    }
+
+    override fun toString(): String {
+        return name
     }
 }

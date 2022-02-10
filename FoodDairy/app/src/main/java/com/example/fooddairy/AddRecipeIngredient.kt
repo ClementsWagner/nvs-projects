@@ -2,13 +2,12 @@ package com.example.fooddairy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.fooddairy.databinding.ActivityAddRecipeIngredientBinding
-import com.example.fooddairy.db.FoodDairyDatabase
-import com.example.fooddairy.db.IngredientRepository
-import com.example.fooddairy.db.RecipeIngredientRepository
+import com.example.fooddairy.db.*
 import com.example.fooddairy.viewModels.RecipeIngredientViewModel
 import com.example.fooddairy.viewModels.ViewModelFactory
 
@@ -16,6 +15,7 @@ class AddRecipeIngredient : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddRecipeIngredientBinding
     private lateinit var recipeIngredientViewModel: RecipeIngredientViewModel
+    private lateinit var adapter: IngredientSpinnerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +28,33 @@ class AddRecipeIngredient : AppCompatActivity() {
         val recipeIngredientDao = FoodDairyDatabase.getInstance(this).recipeIngredientDao()
         val ingredientDao = FoodDairyDatabase.getInstance(this).ingredientDao()
         val ingredientRepository = IngredientRepository(ingredientDao)
-        val recipeIngredientRepository = RecipeIngredientRepository(recipeIngredientDao)
+        val recipeIngredientRepository = RecipeIngredientRepository(recipeIngredientDao, recipeId)
         val factory = ViewModelFactory(recipeIngredientRepository, ingredientRepository)
         recipeIngredientViewModel = ViewModelProvider(this, factory).get(RecipeIngredientViewModel::class.java)
         binding.myViewModel = recipeIngredientViewModel
         binding.lifecycleOwner = this
 
+        recipeIngredientViewModel.getAllIngredients().observe(this,{
+            recipeIngredientViewModel.ingredientsList.addAll(it)
+            adapter.notifyDataSetChanged()
+        })
+
         recipeIngredientViewModel.initView(recipeId, recipeName)
+        adapter = IngredientSpinnerAdapter(this,
+            recipeIngredientViewModel.ingredientsList) { selectedItem: Ingredient ->
+            recipeIngredientViewModel.setSelectedIngredient(selectedItem)
+            binding.saveIngredientRecipe.isEnabled = true
+        }
+        binding.addIngredientSpinner.adapter = adapter
+
+
+        binding.cancelAddIngredient.setOnClickListener {
+            finish()
+        }
+
+        binding.saveIngredientRecipe.setOnClickListener {
+            recipeIngredientViewModel.insertSelectedIngredientToRecipe()
+            finish()
+        }
     }
 }

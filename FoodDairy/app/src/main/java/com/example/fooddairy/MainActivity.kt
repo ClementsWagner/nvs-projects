@@ -1,5 +1,6 @@
 package com.example.fooddairy
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.FrameLayout
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
+
 
     private fun setCurrentFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().apply {

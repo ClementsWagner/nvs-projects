@@ -5,16 +5,19 @@
       <map>
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/activity_add_recipe_ingredient.xml" value="0.2463768115942029" />
+        <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/activity_data_source.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/activity_edit_ingredient.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/activity_edit_recipe.xml" value="0.29257246376811596" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/activity_ingredient_detail.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/activity_recipe_detail.xml" value="0.29257246376811596" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/content_ingredient_detail.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/data_source_dialog.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/fragment_ingredients.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/fragment_recipe.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/ingredient_adapter_layout.xml" value="0.20104166666666667" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/ingredient_header.xml" value="0.1" />
+        <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/ingredient_spinner_item_layout.xml" value="0.1546875" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/recipe_adapter_layout.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/layout/recipe_ingredient_layout_adapter.xml" value="0.1671875" />
         <entry key="..\:/Users/herob/Documents/Projects/nvs-projects/FoodDairy/app/src/main/res/menu/menu_bottom_nav.xml" value="0.20520833333333333" />
