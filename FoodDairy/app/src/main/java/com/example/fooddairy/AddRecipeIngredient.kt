@@ -53,8 +53,15 @@ class AddRecipeIngredient : AppCompatActivity() {
         }
 
         binding.saveIngredientRecipe.setOnClickListener {
-            recipeIngredientViewModel.insertSelectedIngredientToRecipe()
-            finish()
+            if(recipeIngredientViewModel.amount.value.isNullOrEmpty()){
+                this.runOnUiThread {
+                    Toast.makeText(applicationContext, "Please enter an amount", Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                recipeIngredientViewModel.insertSelectedIngredientToRecipe()
+                finish()
+            }
+
         }
     }
 }

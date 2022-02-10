@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 class RecipeIngredientRepository(private val dao: RecipeIngredientDAO, private val recipeId: Int) {
 
-    val ingredientsWithAmount: LiveData<List<IngredientWithAmount>> = dao.getIngredientWithAmount(recipeId)
 
     suspend fun insertRecipeIngredient(recipeIngredient: RecipeIngredient){
         dao.insertRecipeIngredient(recipeIngredient)

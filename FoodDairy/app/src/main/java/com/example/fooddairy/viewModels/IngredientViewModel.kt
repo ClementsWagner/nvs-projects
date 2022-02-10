@@ -46,6 +46,7 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
     }
 
     fun insertIngredient() = viewModelScope.launch {
+        fillEmptyWithDefault()
         val newIngredient: Ingredient = Ingredient(0,
             inputName.value!!,
             inputCalories.value!!.toInt(),
@@ -73,6 +74,7 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
     }
 
     fun updateIngredient() = viewModelScope.launch {
+        fillEmptyWithDefault()
         ingredientToSaveOrAdd.name = inputName.value!!
         ingredientToSaveOrAdd.unit = unit.value!!
         ingredientToSaveOrAdd.calories = inputCalories.value!!.toInt()
@@ -82,6 +84,15 @@ class IngredientViewModel(private val ingredientRepository: IngredientRepository
         ingredientToSaveOrAdd.protein = protein.value!!.toFloat()
         ingredientToSaveOrAdd.salt = salt.value!!.toFloat()
         ingredientRepository.updateIngredient(ingredientToSaveOrAdd)
+    }
+
+    private fun fillEmptyWithDefault(){
+        inputCalories.value = if(inputCalories.value.isNullOrEmpty()) "0" else inputCalories.value
+        fat.value = if(fat.value.isNullOrEmpty()) "0" else fat.value
+        carbohydrates.value = if(carbohydrates.value.isNullOrEmpty()) "0" else carbohydrates.value
+        sugar.value = if(sugar.value.isNullOrEmpty()) "0" else sugar.value
+        protein.value = if(protein.value.isNullOrEmpty()) "0" else protein.value
+        salt.value = if(salt.value.isNullOrEmpty()) "0" else salt.value
     }
 
     fun initDetails(ingredientId: Int) = viewModelScope.launch {

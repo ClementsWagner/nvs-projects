@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 
 class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel() {
 
+    val recipeList = mutableListOf<Recipe>()
     val saveOrAddButtonText = MutableLiveData<String>()
     private lateinit var recipeToSaveOrAdd: Recipe
     val recipeName= MutableLiveData<String>()
@@ -38,6 +39,7 @@ class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel
 
     fun getAllRecipes() = liveData {
         recipeRepository.recipes.collect {
+            recipeList.addAll(it)
             emit(it)
         }
     }
@@ -67,6 +69,7 @@ class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel
     }
 
     fun deleteRecipe(recipe: Recipe) = viewModelScope.launch {
+        recipeList.remove(recipe)
         recipeRepository.deleteRecipe(recipe)
     }
 

@@ -20,8 +20,13 @@ class IngredientsAdapter(private val clickListener: (Ingredient) -> Unit,
         return MyViewHolder(binding);
     }
 
+
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-            holder.bind(ingredients[position], clickListener, onDelete)
+            holder.bind(ingredients[position], clickListener,
+                onDelete = {ingredient: Ingredient,_: Int ->
+                    ingredients.remove(ingredient)
+                    onDelete(ingredient,position)})
     }
 
     override fun getItemCount(): Int {

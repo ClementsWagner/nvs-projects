@@ -32,4 +32,8 @@ interface RecipeDAO {
     @Transaction
     @Query("SELECT * FROM recipeingredient INNER JOIN ingredient ON recipeingredient.ingredientId = ingredient.ingredientId WHERE recipeingredient.recipeId = :recipeId")
     fun getIngredientWithAmount(recipeId: Int): Flow<List<IngredientWithAmount>>
+
+    @Transaction
+    @Query("DELETE FROM recipeingredient WHERE recipeId=:recipeId")
+    suspend fun deleteRecipeIngredients(recipeId: Int)
 }

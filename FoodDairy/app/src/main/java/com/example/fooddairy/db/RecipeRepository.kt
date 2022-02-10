@@ -30,6 +30,7 @@ class RecipeRepository(private val dao: RecipeDAO) {
     }
 
     suspend fun deleteRecipe(recipe: Recipe) : Int{
+        dao.deleteRecipeIngredients(recipe.recipeId)
         return dao.deleteRecipe(recipe)
     }
 }

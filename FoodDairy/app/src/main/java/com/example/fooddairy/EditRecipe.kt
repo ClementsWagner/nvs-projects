@@ -1,9 +1,11 @@
 package com.example.fooddairy
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.Visibility
+import android.util.AttributeSet
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel

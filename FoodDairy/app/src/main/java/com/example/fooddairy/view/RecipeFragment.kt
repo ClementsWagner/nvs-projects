@@ -49,20 +49,18 @@ class RecipeFragment : Fragment() {
         adapter = RecipeAdapter({selectedItem: Recipe -> listItemClicked(selectedItem)},
             { selectedItem: Recipe, position: Int -> onDeleteItem(selectedItem, position) })
         binding.recipeRecyclerView.adapter = adapter
-
         displayRecipes()
     }
 
     private fun displayRecipes(){
         recipeViewModel.getAllRecipes().observe(viewLifecycleOwner,{
-            adapter.setList(it)
+            adapter.setList(recipeViewModel.recipeList)
             adapter.notifyDataSetChanged()
         })
     }
 
     private fun onDeleteItem(recipe: Recipe, position: Int){
         recipeViewModel.deleteRecipe(recipe)
-        adapter.notifyItemRemoved(position)
     }
 
     private fun listItemClicked(recipe: Recipe){
