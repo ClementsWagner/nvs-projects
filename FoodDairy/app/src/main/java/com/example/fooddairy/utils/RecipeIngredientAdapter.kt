@@ -1,4 +1,4 @@
-package com.example.fooddairy
+package com.example.fooddairy.utils
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddairy.databinding.RecipeIngredientLayoutAdapterBinding
 import com.example.fooddairy.db.IngredientWithAmount
-import androidx.databinding.DataBindingUtil.inflate
-import kotlin.reflect.KParameter
+import com.example.fooddairy.R
 
 class RecipeIngredientAdapter(
     private val deletable: Boolean = false,
@@ -19,8 +18,9 @@ class RecipeIngredientAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding: RecipeIngredientLayoutAdapterBinding =
-            DataBindingUtil.inflate(layoutInflater, R.layout.recipe_ingredient_layout_adapter, parent, false)
-        return RecipeIngredientAdapter.MyViewHolder(binding)
+            DataBindingUtil.inflate(layoutInflater,
+                R.layout.recipe_ingredient_layout_adapter, parent, false)
+        return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

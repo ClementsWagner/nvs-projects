@@ -1,11 +1,10 @@
-package com.example.fooddairy
+package com.example.fooddairy.utils
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fooddairy.R
 import com.example.fooddairy.databinding.IngredientAdapterLayoutBinding
 import com.example.fooddairy.db.Ingredient
 
@@ -16,7 +15,8 @@ class IngredientsAdapter(private val clickListener: (Ingredient) -> Unit,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding: IngredientAdapterLayoutBinding = DataBindingUtil.inflate(layoutInflater, R.layout.ingredient_adapter_layout, parent, false)
+        val binding: IngredientAdapterLayoutBinding = DataBindingUtil.inflate(layoutInflater,
+            R.layout.ingredient_adapter_layout, parent, false)
         return MyViewHolder(binding);
     }
 

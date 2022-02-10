@@ -2,7 +2,6 @@ package com.example.fooddairy.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +9,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddairy.*
-import com.example.fooddairy.databinding.FragmentIngredientsBinding
 import com.example.fooddairy.databinding.FragmentRecipeBinding
 import com.example.fooddairy.db.FoodDairyDatabase
-import com.example.fooddairy.db.Ingredient
 import com.example.fooddairy.db.Recipe
 import com.example.fooddairy.db.RecipeRepository
-import com.example.fooddairy.viewModels.IngredientViewModel
+import com.example.fooddairy.utils.RecipeAdapter
 import com.example.fooddairy.viewModels.RecipeViewModel
 import com.example.fooddairy.viewModels.ViewModelFactory
 

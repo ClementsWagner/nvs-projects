@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddairy.databinding.ActivityRecipeDetailBinding
 import com.example.fooddairy.db.FoodDairyDatabase
 import com.example.fooddairy.db.RecipeRepository
+import com.example.fooddairy.utils.RecipeIngredientAdapter
 import com.example.fooddairy.viewModels.RecipeViewModel
 import com.example.fooddairy.viewModels.ViewModelFactory
 

@@ -1,13 +1,9 @@
 package com.example.fooddairy.viewModels
 
 import androidx.lifecycle.*
-import android.transition.Visibility
-import android.view.View
-import com.example.fooddairy.RecipeIngredientAdapter
 import com.example.fooddairy.db.IngredientWithAmount
 import com.example.fooddairy.db.Recipe
 import com.example.fooddairy.db.RecipeRepository
-import com.example.fooddairy.db.RecipeWithIngredient
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -56,10 +52,10 @@ class RecipeViewModel(private val recipeRepository: RecipeRepository): ViewModel
     }
 
     fun initDetails(recipeId: Int) = viewModelScope.launch {
-        val recipe = recipeRepository.getRecipeDetailsById(recipeId)
+        val recipe = recipeRepository.getRecipeById(recipeId)
 
-        recipeName.value = recipe.recipe.name
-        recipeDescription.value = recipe.recipe.description
+        recipeName.value = recipe.name
+        recipeDescription.value = recipe.description
     }
 
     fun getAllRecipeIngredients(recipeId: Int) = liveData{
