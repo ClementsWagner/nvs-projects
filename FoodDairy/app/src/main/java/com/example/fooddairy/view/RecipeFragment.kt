@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fooddairy.*
 import com.example.fooddairy.databinding.FragmentRecipeBinding
 import com.example.fooddairy.db.FoodDairyDatabase
-import com.example.fooddairy.db.Recipe
+import com.example.fooddairy.db.model.Recipe
 import com.example.fooddairy.db.RecipeRepository
 import com.example.fooddairy.utils.RecipeAdapter
 import com.example.fooddairy.viewModels.RecipeViewModel

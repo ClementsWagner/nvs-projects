@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddairy.R
 import com.example.fooddairy.databinding.IngredientAdapterLayoutBinding
-import com.example.fooddairy.db.Ingredient
+import com.example.fooddairy.db.model.Ingredient
 
 class IngredientsAdapter(private val clickListener: (Ingredient) -> Unit,
                          private val onDelete: (Ingredient, Int) -> Unit) : RecyclerView.Adapter<IngredientsAdapter.MyViewHolder>()
@@ -24,7 +24,7 @@ class IngredientsAdapter(private val clickListener: (Ingredient) -> Unit,
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             holder.bind(ingredients[position], clickListener,
-                onDelete = {ingredient: Ingredient,_: Int ->
+                onDelete = { ingredient: Ingredient, _: Int ->
                     ingredients.remove(ingredient)
                     onDelete(ingredient,position)})
     }

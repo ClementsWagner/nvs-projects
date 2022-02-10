@@ -1,8 +1,8 @@
 package com.example.fooddairy.viewModels
 
 import androidx.lifecycle.*
-import com.example.fooddairy.db.IngredientWithAmount
-import com.example.fooddairy.db.Recipe
+import com.example.fooddairy.db.model.IngredientWithAmount
+import com.example.fooddairy.db.model.Recipe
 import com.example.fooddairy.db.RecipeRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

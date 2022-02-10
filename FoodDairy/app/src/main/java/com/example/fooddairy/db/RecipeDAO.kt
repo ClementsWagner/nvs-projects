@@ -1,7 +1,9 @@
 package com.example.fooddairy.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.fooddairy.db.model.IngredientWithAmount
+import com.example.fooddairy.db.model.Recipe
+import com.example.fooddairy.db.model.RecipeIngredient
 import kotlinx.coroutines.flow.Flow
 
 @Dao

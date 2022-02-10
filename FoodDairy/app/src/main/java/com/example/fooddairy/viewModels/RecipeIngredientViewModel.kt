@@ -2,9 +2,9 @@ package com.example.fooddairy.viewModels
 
 import androidx.lifecycle.*
 import com.example.fooddairy.db.*
+import com.example.fooddairy.db.model.Ingredient
+import com.example.fooddairy.db.model.RecipeIngredient
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
 class RecipeIngredientViewModel(private val recipeIngredientRepository: RecipeIngredientRepository, private val ingredientRepository: IngredientRepository) : ViewModel(){
@@ -42,6 +42,7 @@ class RecipeIngredientViewModel(private val recipeIngredientRepository: RecipeIn
             RecipeIngredient(
                 recipeId,
                 selectedIngredient.ingredientId,
-                amount.value!!.toFloat()))
+                amount.value!!.toFloat())
+        )
     }
 }

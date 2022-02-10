@@ -1,6 +1,7 @@
 package com.example.fooddairy.db
 
-import androidx.lifecycle.LiveData
+import com.example.fooddairy.db.model.IngredientWithAmount
+import com.example.fooddairy.db.model.Recipe
 import kotlinx.coroutines.flow.Flow
 
 class RecipeRepository(private val dao: RecipeDAO) {
@@ -26,7 +27,7 @@ class RecipeRepository(private val dao: RecipeDAO) {
         dao.deleteIngredientFromRecipe(recipeId, ingredientId)
     }
 
-    suspend fun getRecipeById(recipeId: Int): Recipe{
+    suspend fun getRecipeById(recipeId: Int): Recipe {
         return dao.getRecipeById(recipeId)
     }
 

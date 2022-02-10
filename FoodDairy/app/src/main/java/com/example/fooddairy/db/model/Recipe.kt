@@ -1,4 +1,4 @@
-package com.example.fooddairy.db
+package com.example.fooddairy.db.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

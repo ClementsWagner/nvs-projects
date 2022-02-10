@@ -1,6 +1,7 @@
 package com.example.fooddairy.db
 
 import androidx.room.*
+import com.example.fooddairy.db.model.Ingredient
 import kotlinx.coroutines.flow.Flow
 
 

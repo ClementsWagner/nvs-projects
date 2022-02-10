@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddairy.R
 import com.example.fooddairy.databinding.RecipeAdapterLayoutBinding
-import com.example.fooddairy.db.Recipe
+import com.example.fooddairy.db.model.Recipe
 
 class RecipeAdapter(private val clickListener: (Recipe) -> Unit,
                     private val onDelete: (Recipe, Int) -> Unit) : RecyclerView.Adapter<RecipeAdapter.MyViewHolder>() {

@@ -1,8 +1,7 @@
 package com.example.fooddairy.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
+import com.example.fooddairy.db.model.RecipeIngredient
 
 @Dao
 interface RecipeIngredientDAO {

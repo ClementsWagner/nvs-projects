@@ -3,7 +3,9 @@ package com.example.fooddairy.db
 import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
-import androidx.room.Entity
+import com.example.fooddairy.db.model.Ingredient
+import com.example.fooddairy.db.model.Recipe
+import com.example.fooddairy.db.model.RecipeIngredient
 
 data class RecipeWithIngredient(
     @Embedded val recipe: Recipe,

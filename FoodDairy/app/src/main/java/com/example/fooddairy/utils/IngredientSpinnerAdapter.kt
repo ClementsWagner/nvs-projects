@@ -1,17 +1,13 @@
-package com.example.fooddairy
+package com.example.fooddairy.utils
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import androidx.databinding.DataBindingUtil
-import com.example.fooddairy.databinding.IngredientSpinnerItemLayoutBinding
-import com.example.fooddairy.db.Ingredient
-import com.example.fooddairy.db.IngredientWithAmount
+import com.example.fooddairy.R
+import com.example.fooddairy.db.model.Ingredient
 
 class IngredientSpinnerAdapter(private val sourceContext: Context,
                                private val ingredients: MutableList<Ingredient>,

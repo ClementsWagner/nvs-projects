@@ -1,5 +1,6 @@
 package com.example.fooddairy.db
 
+import com.example.fooddairy.db.model.Ingredient
 import kotlinx.coroutines.flow.Flow
 
 class IngredientRepository(private val dao: IngredientDAO) {
@@ -18,7 +19,7 @@ class IngredientRepository(private val dao: IngredientDAO) {
         return dao.deleteIngredient(ingredient);
     }
 
-    suspend fun getIngredientById(ingredientId: Int): Ingredient{
+    suspend fun getIngredientById(ingredientId: Int): Ingredient {
         return dao.getIngredientById(ingredientId)
     }
 

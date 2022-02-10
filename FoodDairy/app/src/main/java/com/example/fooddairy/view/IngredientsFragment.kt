@@ -13,7 +13,7 @@ import com.example.fooddairy.utils.IngredientsAdapter
 import com.example.fooddairy.viewModels.ViewModelFactory
 import com.example.fooddairy.databinding.FragmentIngredientsBinding
 import com.example.fooddairy.db.FoodDairyDatabase
-import com.example.fooddairy.db.Ingredient
+import com.example.fooddairy.db.model.Ingredient
 import com.example.fooddairy.db.IngredientRepository
 import com.example.fooddairy.viewModels.IngredientViewModel
 
@@ -58,7 +58,7 @@ class IngredientsFragment : Fragment() {
     private fun initRecycler(){
         binding.ingredientsRecyclerView.layoutManager = LinearLayoutManager(this.requireContext())
         adapter = IngredientsAdapter({selectedItem: Ingredient -> listItemClicked(selectedItem)},
-            {selectedItem: Ingredient, position: Int -> onDeleteItem(selectedItem, position)})
+            { selectedItem: Ingredient, position: Int -> onDeleteItem(selectedItem, position)})
         binding.ingredientsRecyclerView.adapter = adapter
 
         displayIngredientsList()

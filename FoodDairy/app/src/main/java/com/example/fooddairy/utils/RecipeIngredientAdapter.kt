@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fooddairy.databinding.RecipeIngredientLayoutAdapterBinding
-import com.example.fooddairy.db.IngredientWithAmount
+import com.example.fooddairy.db.model.IngredientWithAmount
 import com.example.fooddairy.R
 
 class RecipeIngredientAdapter(
     private val deletable: Boolean = false,
-    private val onDelete: (IngredientWithAmount,Int) -> Unit = {_:IngredientWithAmount,_:Int ->}) : RecyclerView.Adapter<RecipeIngredientAdapter.MyViewHolder>() {
+    private val onDelete: (IngredientWithAmount, Int) -> Unit = { _: IngredientWithAmount, _:Int ->}) : RecyclerView.Adapter<RecipeIngredientAdapter.MyViewHolder>() {
 
     val recipeIngredients = ArrayList<IngredientWithAmount>()
 
@@ -39,7 +39,7 @@ class RecipeIngredientAdapter(
     class MyViewHolder(val binding: RecipeIngredientLayoutAdapterBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(ingredient: IngredientWithAmount,
                  deletable: Boolean = false,
-                 onDelete: (IngredientWithAmount,Int) -> Unit = {_:IngredientWithAmount,_:Int ->}){
+                 onDelete: (IngredientWithAmount, Int) -> Unit = { _: IngredientWithAmount, _:Int ->}){
             binding.recipeIngredientName.text = ingredient.ingredient.name
             binding.recipeIngredientAmount.text = ingredient.amount.toString() + ingredient.ingredient.unit
 
