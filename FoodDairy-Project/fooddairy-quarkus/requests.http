@@ -1,0 +1,71 @@
+@host = http://localhost:8080
+
+#Ingredient
+GET {{host}}/Ingredient
+Content-Type: application/json
+Accept: application/json
+
+###
+POST {{host}}/Ingredient
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name":"Tomato",
+    "unit":"gram",
+    "calories":0,
+    "fat":0.0,
+    "carbohydrates":0.0,
+    "sugar":0.0,
+    "protein":0.0,
+    "salt":0.0
+}
+
+###
+DELETE  {{host}}/Ingredient/2
+Content-Type: application/json
+Accept: application/json
+
+###
+GET {{host}}/Ingredient/1
+Content-Type: application/json
+Accept: application/json
+
+###
+#Recipe
+
+GET {{host}}/Recipe
+Content-Type: application/json
+Accept: application/json
+
+###
+POST {{host}}/Recipe
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name":"Eggfriedrice",
+    "description": "Fry egg, fry rice. Eat."
+}
+
+###
+DELETE  {{host}}/Recipe/2
+Content-Type: application/json
+Accept: application/json
+
+###
+GET {{host}}/Recipe/1
+Content-Type: application/json
+Accept: application/json
+
+#Recipe Ingredient
+###
+POST {{host}}/RecipeIngredient
+Content-Type: application/json
+Accept: application/json
+
+{
+   "recipeId":2,
+   "ingredientId":1,
+   "amount":10
+}
