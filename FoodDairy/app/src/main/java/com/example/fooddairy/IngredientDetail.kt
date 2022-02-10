@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.fooddairy.databinding.ActivityIngredientDetailBinding
 import com.example.fooddairy.db.FoodDairyDatabase
 import com.example.fooddairy.db.repositories.IngredientRepository
-import com.example.fooddairy.view.EditIngredient
 import com.example.fooddairy.viewModels.IngredientViewModel
 import com.example.fooddairy.viewModels.ViewModelFactory
 

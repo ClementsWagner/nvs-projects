@@ -12,12 +12,12 @@
         tools:layout="@layout/fragment_ingredients" />
     <fragment
         android:id="@+id/recipeFragment"
-        android:name="com.example.fooddairy.view.RecipeFragment"
+        android:name="com.example.fooddairy.RecipeFragment"
         android:label="fragment_recipe"
         tools:layout="@layout/fragment_recipe" />
     <activity
         android:id="@+id/editIngredient"
-        android:name="com.example.fooddairy.view.EditIngredient"
+        android:name="com.example.fooddairy.EditIngredient"
         android:label="EditIngredient" />
 
 

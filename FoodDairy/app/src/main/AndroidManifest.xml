@@ -34,7 +34,7 @@
             android:name=".IngredientDetail"
             android:exported="false" />
         <activity
-            android:name=".view.EditIngredient"
+            android:name=".EditIngredient"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

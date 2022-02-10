@@ -1,4 +1,4 @@
-package com.example.fooddairy.view
+package com.example.fooddairy
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fooddairy.EditIngredient
 import com.example.fooddairy.IngredientDetail
 import com.example.fooddairy.utils.IngredientsAdapter
 import com.example.fooddairy.viewModels.ViewModelFactory
@@ -17,16 +18,6 @@ import com.example.fooddairy.db.model.Ingredient
 import com.example.fooddairy.db.repositories.IngredientRepository
 import com.example.fooddairy.viewModels.IngredientViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [IngredientsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class IngredientsFragment : Fragment() {
 
     private lateinit var adapter: IngredientsAdapter

@@ -1,4 +1,4 @@
-package com.example.fooddairy.view
+package com.example.fooddairy
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fooddairy.*
 import com.example.fooddairy.databinding.FragmentRecipeBinding
 import com.example.fooddairy.db.FoodDairyDatabase
 import com.example.fooddairy.db.model.Recipe

@@ -1,11 +1,10 @@
-package com.example.fooddairy.view
+package com.example.fooddairy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.example.fooddairy.R
 import com.example.fooddairy.databinding.ActivityEditIngredientBinding
 import com.example.fooddairy.db.FoodDairyDatabase
 import com.example.fooddairy.db.repositories.IngredientRepository

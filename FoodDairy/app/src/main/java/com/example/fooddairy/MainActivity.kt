@@ -1,12 +1,9 @@
 package com.example.fooddairy
 
-import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
-import com.example.fooddairy.view.IngredientsFragment
-import com.example.fooddairy.view.RecipeFragment
+import com.example.fooddairy.IngredientsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
