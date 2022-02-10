@@ -38,10 +38,15 @@ class RecipeFragment : Fragment() {
         binding.myViewModel = recipeViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        initRecycler()
+
         binding.recipeFAB.setOnClickListener { onAdd() }
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initRecycler()
     }
 
     private fun initRecycler(){

@@ -25,7 +25,7 @@ data class Ingredient(
 
     fun getNutritionFactString(): String{
         var result: String = ""
-        val pad: Int = 25
+        val pad: Int = 30
         result += "Nutrition facts per 100 $unit:\n"
         result += ("Calories".padEnd(pad, ' ')+"$calories\n")
         result += ("Fat".padEnd(pad, ' ')+"$fat\n")
