@@ -19,13 +19,15 @@ class IngredientDetail : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val pref = this.getSharedPreferences("datasource",0)
+        var localStorage = pref.getBoolean("local_storage", true)
         // showing the back button in action bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ingredient_detail)
         val dao = FoodDairyDatabase.getInstance(this).ingredientDao()
-        val repository = IngredientRepository(dao)
+        val repository = IngredientRepository(dao, localStorage)
         val factory = ViewModelFactory(repository)
         ingredientViewModel = ViewModelProvider(this, factory).get(IngredientViewModel::class.java)
         binding.myViewModel = ingredientViewModel

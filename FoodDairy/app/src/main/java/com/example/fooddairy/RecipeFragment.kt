@@ -26,6 +26,8 @@ class RecipeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val pref = this.requireContext().getSharedPreferences("datasource",0)
+        var localStorage = pref.getBoolean("local_storage", true)
         binding = FragmentRecipeBinding.inflate(inflater, container, false)
         val dao = FoodDairyDatabase.getInstance(this.requireContext()).recipeDao()
         val repository = RecipeRepository(dao)

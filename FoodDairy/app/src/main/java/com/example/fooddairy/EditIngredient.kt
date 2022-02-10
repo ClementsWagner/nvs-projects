@@ -17,12 +17,14 @@ class EditIngredient : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val pref = this.getSharedPreferences("datasource",0)
+        var localStorage = pref.getBoolean("local_storage", true)
 
         val ingredientId: Int = intent.getIntExtra("ingredient_id",0)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_ingredient)
         val dao = FoodDairyDatabase.getInstance(this).ingredientDao()
-        val repository = IngredientRepository(dao)
+        val repository = IngredientRepository(dao, localStorage)
         val factory = ViewModelFactory(repository)
         ingredientViewModel = ViewModelProvider(this, factory).get(IngredientViewModel::class.java)
         binding.myViewModel = ingredientViewModel

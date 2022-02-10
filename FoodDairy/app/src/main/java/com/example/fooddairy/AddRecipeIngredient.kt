@@ -23,6 +23,9 @@ class AddRecipeIngredient : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val pref = this.getSharedPreferences("datasource",0)
+        var localStorage = pref.getBoolean("local_storage", true)
+
         val recipeId: Int = intent.getIntExtra("recipe_id",0)
         val recipeName: String = intent.getStringExtra("recipe_name")!!
 
@@ -30,7 +33,7 @@ class AddRecipeIngredient : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_recipe_ingredient)
         val recipeIngredientDao = FoodDairyDatabase.getInstance(this).recipeIngredientDao()
         val ingredientDao = FoodDairyDatabase.getInstance(this).ingredientDao()
-        val ingredientRepository = IngredientRepository(ingredientDao)
+        val ingredientRepository = IngredientRepository(ingredientDao, localStorage)
         val recipeIngredientRepository = RecipeIngredientRepository(recipeIngredientDao, recipeId)
         val factory = ViewModelFactory(recipeIngredientRepository, ingredientRepository)
         recipeIngredientViewModel = ViewModelProvider(this, factory).get(RecipeIngredientViewModel::class.java)

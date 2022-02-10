@@ -4,9 +4,13 @@ import com.example.fooddairy.db.roomDAOs.IngredientDAO
 import com.example.fooddairy.db.model.Ingredient
 import kotlinx.coroutines.flow.Flow
 
-class IngredientRepository(private val dao: IngredientDAO) {
+class IngredientRepository(private val dao: IngredientDAO, private val localStorage: Boolean) {
 
-    val ingredients : Flow<List<Ingredient>> = dao.getAllIngredients()
+    lateinit var ingredients : Flow<List<Ingredient>>
+
+    init {
+        ingredients = dao.getAllIngredients()
+    }
 
     suspend fun insertIngredient(ingredient: Ingredient): Long{
         return dao.insertIngredient(ingredient);
@@ -22,6 +26,7 @@ class IngredientRepository(private val dao: IngredientDAO) {
 
     suspend fun getIngredientById(ingredientId: Int): Ingredient {
         return dao.getIngredientById(ingredientId)
+
     }
 
 }

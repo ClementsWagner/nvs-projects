@@ -35,12 +35,7 @@ class DataSourceActivity : AppCompatActivity() {
         val pref = applicationContext.getSharedPreferences("datasource",0)
         val editor: SharedPreferences.Editor = pref.edit()
         editor.apply {
-            if(localStorage){
-                editor.putString("source", "local")
-            }
-            else{
-                editor.putString("source", "cloud")
-            }
+            editor.putBoolean("local_storage", localStorage)
         }.apply()
     }
 }

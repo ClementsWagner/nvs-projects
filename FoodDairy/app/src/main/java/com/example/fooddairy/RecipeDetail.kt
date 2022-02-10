@@ -24,6 +24,8 @@ class RecipeDetail : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val pref = this.getSharedPreferences("datasource",0)
+        var localStorage = pref.getBoolean("local_storage", true)
         // showing the back button in action bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 

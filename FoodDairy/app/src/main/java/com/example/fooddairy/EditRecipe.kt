@@ -24,6 +24,8 @@ class EditRecipe : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val pref = this.getSharedPreferences("datasource",0)
+        var localStorage = pref.getBoolean("local_storage", true)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_recipe)
         val recipeDAO = FoodDairyDatabase.getInstance(this).recipeDao()

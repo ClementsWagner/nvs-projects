@@ -28,9 +28,12 @@ class IngredientsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val pref = this.requireContext().getSharedPreferences("datasource",0)
+        var localStorage = pref.getBoolean("local_storage", true)
+
         binding = FragmentIngredientsBinding.inflate(inflater, container, false)
         val ingredientDao = FoodDairyDatabase.getInstance(this.requireContext()).ingredientDao()
-        val ingredientRepository = IngredientRepository(ingredientDao)
+        val ingredientRepository = IngredientRepository(ingredientDao, localStorage)
         val factory = ViewModelFactory(ingredientRepository)
         ingredientViewModel = ViewModelProvider(this, factory).get(IngredientViewModel::class.java)
         binding.myViewModel = ingredientViewModel
